@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -12,7 +13,12 @@ public class GameManager : MonoBehaviour
      // UI 관련 코드
      [SerializeField] private MoveButton leftMoveButton;
      [SerializeField] private MoveButton rightMoveButton;
+     [SerializeField] private TMP_Text gasText;
 
+     // 자동차
+     private CarController carController;
+     
+     // 도로 오브젝트 풀
      private Queue<GameObject> _roadPool = new Queue<GameObject>();
      private int _roadPoolSize = 3;
      
@@ -62,15 +68,17 @@ public class GameManager : MonoBehaviour
           {
                activeRoad.transform.Translate(Vector3.back * Time.deltaTime);
           }
+          
+          gasText.text = carController?.Gas.ToString();
      }
-
+     
      private void StartGame()
      {
           // 도로 생성
           SpawnRoad(Vector3.zero);
           
           // 자동차 생성
-          var carController = Instantiate(carPrefab, new Vector3(0, 0, -3f), Quaternion.identity).GetComponent<CarController>();
+          carController = Instantiate(carPrefab, new Vector3(0, 0, -3f), Quaternion.identity).GetComponent<CarController>();
           
           // Left, Right move buttond에 자동차 컨트롤 기능 추가
 

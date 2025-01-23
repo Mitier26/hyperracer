@@ -249,6 +249,7 @@ MonoBehaviour:
   roadPrefab: {fileID: 4176816936005294875, guid: 25a48f730bc60c747bbb4ef653afe59f, type: 3}
   leftMoveButton: {fileID: 1516377251}
   rightMoveButton: {fileID: 1873804489}
+  gasText: {fileID: 1681647045}
 --- !u!4 &746931025
 Transform:
   m_ObjectHideFlags: 0
@@ -674,7 +675,7 @@ GameObject:
   - component: {fileID: 1681647046}
   - component: {fileID: 1681647045}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Gas_Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
