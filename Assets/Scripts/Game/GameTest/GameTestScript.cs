@@ -73,22 +73,18 @@ public class GameTestScript
             RaycastHit hit;
             if (Physics.Raycast(leftPosition, rayDirection, out hit, rayDistance, LayerMask.GetMask("Gas")))
             {
-                Debug.Log("left");
                 MoveCar(hit.point);
             }
             else if (Physics.Raycast(centerPosition, rayDirection, out hit, rayDistance, LayerMask.GetMask("Gas")))
             {
-                Debug.Log("center");
                 MoveCar(hit.point);
             }
             else if (Physics.Raycast(rightPosition, rayDirection, out hit, rayDistance, LayerMask.GetMask("Gas")))
             {
-                Debug.Log("right");
                 MoveCar(hit.point);
             }
             else
             {
-                Debug.Log("none");
                 MoveButtonUp(_leftMoveButton);
                 MoveButtonUp(_rightMoveButton);
             }
