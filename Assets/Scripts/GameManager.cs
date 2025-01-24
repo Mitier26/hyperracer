@@ -14,6 +14,9 @@ public class GameManager : MonoBehaviour
      [SerializeField] private MoveButton leftMoveButton;
      [SerializeField] private MoveButton rightMoveButton;
      [SerializeField] private TMP_Text gasText;
+     [SerializeField] private GameObject startPanelPrefab;
+     [SerializeField] private GameObject endPanelPrefab;
+     [SerializeField] private Transform canvasTransform;
 
      // 자동차
      private CarController carController;
@@ -49,6 +52,7 @@ public class GameManager : MonoBehaviour
 
      private void Awake()
      {
+          Time.timeScale = 5f;
           if (_instance == null)
           {
                _instance = this;
@@ -68,7 +72,7 @@ public class GameManager : MonoBehaviour
           GameState = State.Start;
           
           // 게임 시작
-          StartGame();
+          ShowStartPanel();
      }
 
      private void Update()
@@ -123,7 +127,37 @@ public class GameManager : MonoBehaviour
           }
           
           // TODO: 게임 오버 패널 표시
+          ShowEndPanel();
      }
+
+     #region UI
+     /// <summary>
+     /// 시작 화면을 표시
+     /// </summary>
+     private void ShowStartPanel()
+     {
+         StartPanelController startPanelController = Instantiate(startPanelPrefab, canvasTransform).GetComponent<StartPanelController>();
+         startPanelController.OnStartButtonClick += () =>
+         {
+              StartGame();
+              Destroy(startPanelController.gameObject);
+         };
+     }
+
+     /// <summary>
+     /// 게임 종료 화면 표시
+     /// </summary>
+     private void ShowEndPanel()
+     {
+          StartPanelController endPanelController = Instantiate(endPanelPrefab, canvasTransform).GetComponent<StartPanelController>();
+          endPanelController.OnStartButtonClick += () =>
+          {
+               Destroy(endPanelController.gameObject);
+               ShowStartPanel();
+          };
+     }
+
+     #endregion
      
      #region 도로 생성 및 관리
      
@@ -177,5 +211,6 @@ public class GameManager : MonoBehaviour
 
      #endregion
 
+     
 
 }
