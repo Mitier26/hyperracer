@@ -96,6 +96,8 @@ public class GameManager : MonoBehaviour
      
      private void StartGame()
      {
+          _roadIndex = 0;
+          
           // 도로 생성
           SpawnRoad(Vector3.zero);
           
