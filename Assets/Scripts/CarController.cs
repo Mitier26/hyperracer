@@ -23,6 +23,8 @@ public class CarController : MonoBehaviour
             if(gas <= 0) break;
             yield return new WaitForSeconds(1f);
         }
+        // 게임 종료
+        GameManager.Instance.EndGame();
     }
     
     /// <summary>
@@ -48,7 +50,7 @@ public class CarController : MonoBehaviour
             gas += 30;
             
             // TODO : 가스 아이템 제거
-            Destroy(other.gameObject);
+            other.gameObject.SetActive(false);
         }
     }
 }
